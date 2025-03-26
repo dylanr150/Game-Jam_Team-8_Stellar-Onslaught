@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 2c9f2c1a470274caeb8ef99511c7aabc
+guid: 44edcc9ba83aa9b49b61bee75dbad65e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2130163334996902406
-    second: blue-preview_0
+      213: 8734387900103132263
+    second: laserGreen08_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: blue-preview_0
+      name: laserGreen08_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 816
-        height: 480
+        width: 13
+        height: 37
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: afdb2ff9bb32072e0800000000000000
-      internalID: -2130163334996902406
+      spriteID: 7640e14b487c63970800000000000000
+      internalID: 8734387900103132263
       vertices: []
       indices: 
       edges: []
@@ -147,8 +147,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      blue-preview_0: -2130163334996902406
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
