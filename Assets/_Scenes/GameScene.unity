@@ -152,6 +152,10 @@ MonoBehaviour:
   OnMove:
     m_PersistentCalls:
       m_Calls: []
+  OnShoot:
+    m_PersistentCalls:
+      m_Calls: []
+  fireDelay: 0.25
 --- !u!114 &323995180
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -751,6 +755,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 4297779346982149887, guid: aae96e5aae07db14bb1ffa66271f13fd, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4827017283776319909, guid: aae96e5aae07db14bb1ffa66271f13fd, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8918342830153381929, guid: aae96e5aae07db14bb1ffa66271f13fd, type: 3}
+      propertyPath: bulletPrefab
+      value: 
+      objectReference: {fileID: 3946968193610357113, guid: 87b62443a339944478fcb660dd62624e, type: 3}
     - target: {fileID: 8918342830153381929, guid: aae96e5aae07db14bb1ffa66271f13fd, type: 3}
       propertyPath: inputManager
       value: 
