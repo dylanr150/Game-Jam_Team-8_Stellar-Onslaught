@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class SelfDestruct : MonoBehaviour
 {
-    public float timer = 1f;
+    public float timer = 3f;
     void Update()
     {
         timer -= Time.deltaTime;
