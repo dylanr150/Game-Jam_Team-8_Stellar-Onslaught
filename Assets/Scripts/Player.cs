@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float speed;
 
     public GameObject bulletPrefab;
+    private GameObject gunSpot;
 
 
     private Rigidbody2D rb;
@@ -34,7 +35,8 @@ public class Player : MonoBehaviour
 
     private void playerShoot()
     {
-        Instantiate(bulletPrefab, transform.position, Quaternion.identity);
+        gunSpot = GameObject.Find("GunSpot");
+        Instantiate(bulletPrefab, gunSpot.transform.position, Quaternion.identity);
     }
 
 }
