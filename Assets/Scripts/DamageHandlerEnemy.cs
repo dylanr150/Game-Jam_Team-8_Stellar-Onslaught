@@ -1,8 +1,9 @@
 using UnityEngine;
 
-public class DamageHandler : MonoBehaviour
+public class DamageHandlerEnemy : MonoBehaviour
 {
     int health = 1;
+    [SerializeField] private int scoreValue = 100;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -20,5 +21,6 @@ public class DamageHandler : MonoBehaviour
     void Die()
     {
         Destroy(gameObject);
+        GameManager.Instance.AddScore(scoreValue);
     }
 }
