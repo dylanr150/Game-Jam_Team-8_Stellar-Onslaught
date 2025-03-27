@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8862801305650999436}
   - component: {fileID: 5746962637577591247}
   - component: {fileID: 8918342830153381929}
+  - component: {fileID: -6081353354918232758}
   m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
@@ -122,7 +123,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -180,7 +181,18 @@ MonoBehaviour:
   inputManager: {fileID: 0}
   speed: 5
   bulletPrefab: {fileID: 3946968193610357113, guid: 87b62443a339944478fcb660dd62624e, type: 3}
-  gunSpot: {fileID: 0}
+--- !u!114 &-6081353354918232758
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4297779346982149887}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59d5d86e70e44e64f969b948b2586612, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4827017283776319909
 GameObject:
   m_ObjectHideFlags: 0
