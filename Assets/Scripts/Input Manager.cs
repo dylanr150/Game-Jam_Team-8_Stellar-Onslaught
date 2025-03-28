@@ -6,9 +6,14 @@ using Unity.VisualScripting;
 public class InputManager : MonoBehaviour
 {
     public UnityEvent<Vector2> OnMove = new UnityEvent<Vector2>();
+    public UnityEvent OnShoot = new UnityEvent();
+
+    public float fireDelay = 0.25f;
+    float cooldownTimer = 0;
     void Update()
     {
         Vector2 input = Vector2.zero;
+
         if (Input.GetKey(KeyCode.A))
         {
             input += Vector2.left;
@@ -18,6 +23,18 @@ public class InputManager : MonoBehaviour
             input += Vector2.right;
         }
 
+
         OnMove?.Invoke(input);
+        
+
+        cooldownTimer -= Time.deltaTime;
+        if (Input.GetKey(KeyCode.Space) && cooldownTimer <= 0)
+        {
+            cooldownTimer = fireDelay;
+            OnShoot?.Invoke();
+        }
+
+        
+        
     }
 }
