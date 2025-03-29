@@ -1,3 +1,4 @@
+// MainMenuController.cs
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -21,23 +22,30 @@ public class MainMenuController : MonoBehaviour
     #endif
 
     [HideInInspector] public string startSceneName;
-    [HideInInspector] public string tutorialSceneName;
+    // [HideInInspector] public string tutorialSceneName;
 
     [Header("Buttons")]
     public Button startButton;
     public Button tutorialButton;
     public Button quitButton;
 
-    void OnValidate()
+    // Add HowToPlayPanel reference
+    [Header("How to Play Panel (Overlay)")]
+    [SerializeField] private GameObject howToPlayPanel;
+    [SerializeField] private Button closeHowToPlayButton;
+
+void OnValidate()
     {
         #if UNITY_EDITOR
         if (startScene != null)
             startSceneName = startScene.name;
+        /*
         if (tutorialScene != null)
             tutorialSceneName = tutorialScene.name;
+        */
         #endif
     }
-
+    
     void Start()
     {
         if (menuMusic != null && !menuMusic.isPlaying)
@@ -49,9 +57,12 @@ public class MainMenuController : MonoBehaviour
             AddHoverSound(startButton);
         }
 
+
         if (tutorialButton != null)
         {
-            tutorialButton.onClick.AddListener(OnTutorialClicked);
+            // Previously: OnTutorialClicked() for loading a separate scene
+            // Now using OnHowToPlayOverlayClicked() for overlay display
+            tutorialButton.onClick.AddListener(OnHowToPlayOverlayClicked);
             AddHoverSound(tutorialButton);
         }
 
@@ -59,6 +70,17 @@ public class MainMenuController : MonoBehaviour
         {
             quitButton.onClick.AddListener(OnQuitClicked);
             AddHoverSound(quitButton);
+        }
+
+        // Make sure the HowToPlay panel is disabled at startup
+        if (howToPlayPanel != null) 
+            howToPlayPanel.SetActive(false);
+
+        // Setup the Close button on the panel
+        if (closeHowToPlayButton != null)
+        {
+            closeHowToPlayButton.onClick.AddListener(OnCloseHowToPlay);
+            AddHoverSound(closeHowToPlayButton);
         }
     }
 
@@ -68,11 +90,31 @@ public class MainMenuController : MonoBehaviour
         SceneManager.LoadScene(startSceneName);
     }
 
+    void OnHowToPlayOverlayClicked()
+    {
+        PlayClickSound();
+        // Show the overlay panel
+        if (howToPlayPanel != null)
+            howToPlayPanel.SetActive(true);
+    }
+
+
+/*
+    // Original method for loading the tutorial scene (now unused):
     void OnTutorialClicked()
     {
         PlayClickSound();
         SceneManager.LoadScene(tutorialSceneName);
     }
+    */
+
+    void OnCloseHowToPlay()
+    {
+        PlayClickSound();
+        if (howToPlayPanel != null)
+            howToPlayPanel.SetActive(false);
+    }
+
 
     void OnQuitClicked()
     {
