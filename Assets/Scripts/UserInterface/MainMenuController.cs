@@ -34,7 +34,7 @@ public class MainMenuController : MonoBehaviour
     [SerializeField] private GameObject howToPlayPanel;
     [SerializeField] private Button closeHowToPlayButton;
 
-void OnValidate()
+    void OnValidate()
     {
         #if UNITY_EDITOR
         if (startScene != null)
