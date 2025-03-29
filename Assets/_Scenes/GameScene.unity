@@ -2175,7 +2175,8 @@ GameObject:
   - component: {fileID: 1915960996}
   - component: {fileID: 1915960998}
   - component: {fileID: 1915960997}
-  - component: {fileID: 1915960999}
+  - component: {fileID: 1915961001}
+  - component: {fileID: 1915961000}
   m_Layer: 5
   m_Name: TutorialHintsPanel
   m_TagString: Untagged
@@ -2219,7 +2220,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.9019608}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.9411765}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2244,7 +2245,31 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1915960995}
   m_CullTransparentMesh: 1
---- !u!114 &1915960999
+--- !u!114 &1915961000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1915960995}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f6354e47c5da42a08b65f5271d343fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tipsText: {fileID: 379538598}
+  backButton: {fileID: 973854830}
+  nextButton: {fileID: 1657058668}
+  pageIndicatorText: {fileID: 467452275}
+  tutorialPages:
+  - Welcome to Stellar Onslaught!
+  - Press A or D to move left or right.
+  - Press Space to shoot bullets.
+  - Destroy enemies to earn points!
+  - 'Stay alive and defeat the final boss to win.
+
+    Good luck, pilot!'
+--- !u!114 &1915961001
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2256,7 +2281,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f6354e47c5da42a08b65f5271d343fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hintsText: {fileID: 379538598}
+  tipsText: {fileID: 379538598}
   backButton: {fileID: 973854830}
   nextButton: {fileID: 1657058668}
   pageIndicatorText: {fileID: 467452275}

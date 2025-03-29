@@ -5,7 +5,7 @@ using TMPro;
 public class UITipsPanelController : MonoBehaviour
 {
     [Header("UI References")]
-    [SerializeField] private TextMeshProUGUI hintsText;    // The text component for tutorial messages
+    [SerializeField] private TextMeshProUGUI tipsText;    // The text component for tutorial messages
     [SerializeField] private Button backButton;            // The 'Back' button
     [SerializeField] private Button nextButton;            // The 'Next' or 'OK' button
 
@@ -19,6 +19,8 @@ public class UITipsPanelController : MonoBehaviour
         "Press Space to shoot bullets.\nDestroy enemies to earn points!",
         "Stay alive and defeat the final boss to win.\nGood luck, pilot!"
 
+    //To change the text, edit the UITipsPanelController script attached to the TutorialHintsPanel.
+    
         // "Welcome to Stellar Onslaught!",
         // "Press A or D to move left or right.",
         // "Press Space to shoot bullets.",
@@ -61,9 +63,9 @@ public class UITipsPanelController : MonoBehaviour
     private void ShowCurrentPage()
     {
         // Update the main text
-        if (hintsText != null && currentPageIndex < tutorialPages.Length)
+        if (tipsText != null && currentPageIndex < tutorialPages.Length)
         {
-            hintsText.text = tutorialPages[currentPageIndex];
+            tipsText.text = tutorialPages[currentPageIndex];
         }
 
         // Page number label (Example: "Page 1/3")
