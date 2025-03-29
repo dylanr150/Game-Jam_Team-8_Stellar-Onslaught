@@ -9,12 +9,25 @@ public class UITipsPanelController : MonoBehaviour
     [SerializeField] private Button backButton;            // The 'Back' button
     [SerializeField] private Button nextButton;            // The 'Next' or 'OK' button
 
+    [SerializeField] private TextMeshProUGUI pageIndicatorText; // Page Index
+
+
     [Header("Tutorial Pages")]
     [TextArea]
     [SerializeField] private string[] tutorialPages = {
         "Welcome to Stellar Onslaught!\nPress A or D to move left or right.",
         "Press Space to shoot bullets.\nDestroy enemies to earn points!",
         "Stay alive and defeat the final boss to win.\nGood luck, pilot!"
+
+        // "Welcome to Stellar Onslaught!",
+        // "Press A or D to move left or right.",
+        // "Press Space to shoot bullets.",
+        // "Destroy enemies to earn points!",
+        // "Stay alive and defeat the final boss to win.\nGood luck, pilot!"
+
+        // "Press A/D to move",
+        // "Press Space to shoot",
+        // "Good luck, pilot!"
     };
 
     private int currentPageIndex = 0;
@@ -52,6 +65,13 @@ public class UITipsPanelController : MonoBehaviour
         {
             hintsText.text = tutorialPages[currentPageIndex];
         }
+
+        // Page number label (Example: "Page 1/3")
+        if (pageIndicatorText != null)
+        {
+            pageIndicatorText.text = $"Page {currentPageIndex + 1}/{tutorialPages.Length}";
+        }
+
 
         // Handle Back button visibility
         if (backButton != null)

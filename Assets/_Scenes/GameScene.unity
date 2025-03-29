@@ -2259,6 +2259,7 @@ MonoBehaviour:
   hintsText: {fileID: 379538598}
   backButton: {fileID: 973854830}
   nextButton: {fileID: 1657058668}
+  pageIndicatorText: {fileID: 467452275}
   tutorialPages:
   - 'Welcome to Stellar Onslaught!
 
