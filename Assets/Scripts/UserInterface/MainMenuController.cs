@@ -106,7 +106,7 @@ public class MainMenuController : MonoBehaviour
         PlayClickSound();
         SceneManager.LoadScene(tutorialSceneName);
     }
-    */
+*/
 
     void OnCloseHowToPlay()
     {
