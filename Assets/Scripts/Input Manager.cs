@@ -7,6 +7,7 @@ public class InputManager : MonoBehaviour
 {
     public UnityEvent<Vector2> OnMove = new UnityEvent<Vector2>();
     public UnityEvent OnShoot = new UnityEvent();
+    public UnityEvent StopShoot = new UnityEvent();
 
     public float fireDelay = 0.25f;
     float cooldownTimer = 0;
@@ -33,7 +34,10 @@ public class InputManager : MonoBehaviour
             cooldownTimer = fireDelay;
             OnShoot?.Invoke();
         }
-
+        else
+        {
+            StopShoot?.Invoke();
+        }
         
         
     }
