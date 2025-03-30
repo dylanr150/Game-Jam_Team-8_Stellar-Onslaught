@@ -8,14 +8,18 @@ public class Player : MonoBehaviour
 
     public GameObject bulletPrefab;
     private GameObject gunSpot;
-
+    private GameObject gunSpot2;
 
     private Rigidbody2D rb;
+
+    public Animator animator;
+    bool shoot = false;
 
     void Start()
     {
         inputManager.OnMove.AddListener(MovePlayer);
         inputManager.OnShoot.AddListener(playerShoot);
+        inputManager.StopShoot.AddListener(onStopShooting);
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -35,8 +39,18 @@ public class Player : MonoBehaviour
 
     private void playerShoot()
     {
-        gunSpot = GameObject.Find("GunSpot");
+        gunSpot = GameObject.Find("GunSpotL");
+        gunSpot2 = GameObject.Find("GunSpotR");
         Instantiate(bulletPrefab, gunSpot.transform.position, Quaternion.identity);
+        Instantiate(bulletPrefab, gunSpot2.transform.position, Quaternion.identity);
+
+        shoot = true;
+        animator.SetBool("isShoot", true);
+    }
+
+    public void onStopShooting()
+    {
+        animator.SetBool("isShoot", false);
     }
 
 }
