@@ -183,6 +183,7 @@ MonoBehaviour:
   inputManager: {fileID: 0}
   speed: 5
   bulletPrefab: {fileID: 3946968193610357113, guid: 87b62443a339944478fcb660dd62624e, type: 3}
+  animator: {fileID: 0}
 --- !u!114 &-6081353354918232758
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -375,7 +376,7 @@ PrefabInstance:
     - target: {fileID: 1160356261127867848, guid: 99b336a7f773fa14cae6d3fb7b3afd76, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: -1569867477556518978, guid: 99b336a7f773fa14cae6d3fb7b3afd76, type: 3}
+      objectReference: {fileID: 9100000, guid: 482885419fe912c4db753d1b4632d2c3, type: 2}
     - target: {fileID: 1160356261127867848, guid: 99b336a7f773fa14cae6d3fb7b3afd76, type: 3}
       propertyPath: m_ApplyRootMotion
       value: 0
