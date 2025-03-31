@@ -3,6 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class LevelController : MonoBehaviour
 {
+
     public string enemyTag = "Enemy";  // Tag to identify enemies
     private int totalEnemies;         // Total number of enemies in the level
     private int remainingEnemies;     // Number of enemies still alive
@@ -12,6 +13,8 @@ public class LevelController : MonoBehaviour
         // Count the number of enemies at the start of the level
         totalEnemies = GameObject.FindGameObjectsWithTag(enemyTag).Length;
         remainingEnemies = totalEnemies;
+
+        
     }
 
     void Update()
@@ -36,7 +39,7 @@ public class LevelController : MonoBehaviour
         int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
 
         // Check if there’s a next scene available
-        if (nextSceneIndex < SceneManager.sceneCountInBuildSettings)
+        if (nextSceneIndex < SceneManager.sceneCountInBuildSettings && Input.GetKey(KeyCode.Return))
         {
             SceneManager.LoadScene(nextSceneIndex);
         }

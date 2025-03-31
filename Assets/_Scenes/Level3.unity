@@ -278,87 +278,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6489058599101997478, guid: e77b2c6718141b94493999cb073f06c9, type: 3}
   m_PrefabInstance: {fileID: 9079133093193620697}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &323995178
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 323995181}
-  - component: {fileID: 323995179}
-  - component: {fileID: 323995180}
-  m_Layer: 0
-  m_Name: GameManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &323995179
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 323995178}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e10ca1075b16c94583d08568d5394e8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OnMove:
-    m_PersistentCalls:
-      m_Calls: []
-  OnShoot:
-    m_PersistentCalls:
-      m_Calls: []
-  StopShoot:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 917651424}
-        m_TargetAssemblyTypeName: Player, Assembly-CSharp
-        m_MethodName: onStopShooting
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  fireDelay: 0.5
---- !u!114 &323995180
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 323995178}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 692155b34f095664caa07403318950ac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inputManager: {fileID: 323995179}
-  scoreText: {fileID: 783955388}
---- !u!4 &323995181
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 323995178}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.6108768, y: 0.4701697, z: -0.058064617}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &326228592
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1487,9 +1406,10 @@ GameObject:
   - component: {fileID: 783955387}
   - component: {fileID: 783955389}
   - component: {fileID: 783955388}
+  - component: {fileID: 783955390}
   m_Layer: 5
   m_Name: ScoreText
-  m_TagString: Untagged
+  m_TagString: Score
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1533,7 +1453,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Score: 0 '
+  m_text: 'Score: 0'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1612,22 +1532,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 783955386}
   m_CullTransparentMesh: 1
+--- !u!114 &783955390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 783955386}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccd370acbcc50c2459c0b52f600d899c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreText: {fileID: 783955388}
 --- !u!4 &899824917 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6489058599101997478, guid: e77b2c6718141b94493999cb073f06c9, type: 3}
   m_PrefabInstance: {fileID: 1928752379}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &917651424 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8918342830153381929, guid: aae96e5aae07db14bb1ffa66271f13fd, type: 3}
-  m_PrefabInstance: {fileID: 1560043326}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a1651c33071cd143a15cb25870b2143, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &922740038
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2231,7 +2153,7 @@ PrefabInstance:
     - target: {fileID: 8918342830153381929, guid: aae96e5aae07db14bb1ffa66271f13fd, type: 3}
       propertyPath: inputManager
       value: 
-      objectReference: {fileID: 323995179}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2943,7 +2865,6 @@ SceneRoots:
   - {fileID: 619394802}
   - {fileID: 463856915}
   - {fileID: 343321355}
-  - {fileID: 323995181}
   - {fileID: 1560043326}
   - {fileID: 543465812}
   - {fileID: 7164722700185167637}

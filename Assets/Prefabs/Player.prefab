@@ -181,6 +181,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inputManager: {fileID: 0}
   speed: 5
+  health: 1
+  pauseDuration: 2
   bulletPrefab: {fileID: 3946968193610357113, guid: 87b62443a339944478fcb660dd62624e, type: 3}
   animator: {fileID: 6422906188146095028}
 --- !u!1 &7081518968076764760

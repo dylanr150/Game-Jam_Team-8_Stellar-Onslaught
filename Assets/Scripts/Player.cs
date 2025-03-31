@@ -4,7 +4,7 @@ using System.Collections;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] private InputManager inputManager;
+ //   [SerializeField] private InputManager inputManager;
     [SerializeField] private float speed;
     [SerializeField] private int health = 1;
     public float pauseDuration = 2f;
@@ -21,9 +21,9 @@ public class Player : MonoBehaviour
 
     void Start()
     {
-        inputManager.OnMove.AddListener(MovePlayer);
-        inputManager.OnShoot.AddListener(playerShoot);
-        inputManager.StopShoot.AddListener(onStopShooting);
+        InputManager.Instance.OnMove.AddListener(MovePlayer);
+        InputManager.Instance.OnShoot.AddListener(playerShoot);
+        InputManager.Instance.StopShoot.AddListener(onStopShooting);
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -40,7 +40,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    void Die()
+    public void Die()
     {
         dead = true;
         // Disable the collider so the enemy can't be hit again
@@ -49,7 +49,7 @@ public class Player : MonoBehaviour
         Destroy(gameObject);
     }
 
-    private void MovePlayer(Vector2 direction)
+    public void MovePlayer(Vector2 direction)
     {
         if(direction != Vector2.zero) 
         {
@@ -63,7 +63,7 @@ public class Player : MonoBehaviour
         
     }
 
-    private void playerShoot()
+    public void playerShoot()
     {
         gunSpot = GameObject.Find("GunSpotL");
         gunSpot2 = GameObject.Find("GunSpotR");
