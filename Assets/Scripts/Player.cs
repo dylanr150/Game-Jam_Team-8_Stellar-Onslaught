@@ -1,12 +1,19 @@
 using UnityEngine;
 using System;
 using System.Collections;
+using NUnit.Framework;
+using System.Collections.Generic;
 
 public class Player : MonoBehaviour
 {
  //   [SerializeField] private InputManager inputManager;
     [SerializeField] private float speed;
-    [SerializeField] private int health = 1;
+    [SerializeField] private int health = 3;
+
+    public GameObject heartPrefab;
+    private List<GameObject> hearts = new List<GameObject>();
+
+
     public float pauseDuration = 2f;
 
     public GameObject bulletPrefab;
@@ -25,12 +32,14 @@ public class Player : MonoBehaviour
         InputManager.Instance.OnShoot.AddListener(playerShoot);
         InputManager.Instance.StopShoot.AddListener(onStopShooting);
         rb = GetComponent<Rigidbody2D>();
+        SpawnHearts();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Debug.Log("Trigger");
         health--;
+        UpdateHearts();
     }
     void Update()
     {
@@ -93,6 +102,32 @@ public class Player : MonoBehaviour
         Debug.Log("Game resumed!");
 
         // Optionally, restart or load a scene, or perform any other necessary actions here
+    }
+
+    private void SpawnHearts()
+    {
+        foreach(GameObject heart in hearts)
+        {
+            Destroy(heart);
+        }
+        hearts.Clear();
+
+        for (int i =0; i < health; i++)
+        {
+            Vector3 heartPosition = new Vector3(-8.5f + (i * 0.4f), -4.6f, 0);
+            GameObject heart = Instantiate(heartPrefab, heartPosition, Quaternion.identity);
+            hearts.Add(heart);
+        }
+    }
+
+    private void UpdateHearts()
+    {
+        // Remove the last heart when health decreases
+        if (hearts.Count > health)
+        {
+            Destroy(hearts[hearts.Count - 1]);
+            hearts.RemoveAt(hearts.Count - 1);
+        }
     }
 
 }

@@ -179,9 +179,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a1651c33071cd143a15cb25870b2143, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
   speed: 5
-  health: 1
+  health: 3
+  heartPrefab: {fileID: 268175821095634814, guid: 0ee3d7439fd778047b8ba256bd138654, type: 3}
   pauseDuration: 2
   bulletPrefab: {fileID: 3946968193610357113, guid: 87b62443a339944478fcb660dd62624e, type: 3}
   animator: {fileID: 6422906188146095028}
