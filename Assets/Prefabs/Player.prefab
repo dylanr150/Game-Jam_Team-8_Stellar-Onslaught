@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 8862801305650999436}
   - component: {fileID: 5746962637577591247}
   - component: {fileID: 8918342830153381929}
-  - component: {fileID: -6081353354918232758}
   m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
@@ -183,20 +182,7 @@ MonoBehaviour:
   inputManager: {fileID: 0}
   speed: 5
   bulletPrefab: {fileID: 3946968193610357113, guid: 87b62443a339944478fcb660dd62624e, type: 3}
-  animator: {fileID: 0}
---- !u!114 &-6081353354918232758
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4297779346982149887}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59d5d86e70e44e64f969b948b2586612, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  scoreValue: 100
+  animator: {fileID: 6422906188146095028}
 --- !u!1 &7081518968076764760
 GameObject:
   m_ObjectHideFlags: 0
@@ -441,5 +427,10 @@ PrefabInstance:
 --- !u!4 &2624845576747745649 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7878350319992209165, guid: 99b336a7f773fa14cae6d3fb7b3afd76, type: 3}
+  m_PrefabInstance: {fileID: 5276203336175353468}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &6422906188146095028 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1160356261127867848, guid: 99b336a7f773fa14cae6d3fb7b3afd76, type: 3}
   m_PrefabInstance: {fileID: 5276203336175353468}
   m_PrefabAsset: {fileID: 0}
