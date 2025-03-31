@@ -39,5 +39,8 @@ public class DamageHandlerEnemy : MonoBehaviour
 
         Destroy(gameObject, deathTime);
         GameManager.Instance.AddScore(scoreValue);
+        FindFirstObjectByType<LevelController>().EnemyDestroyed();
     }
+
+
 }

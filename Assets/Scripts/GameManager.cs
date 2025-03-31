@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            // DontDestroyOnLoad(gameObject); // Uncomment out if you don't want to destroy it even after crossing a scene.
+            DontDestroyOnLoad(gameObject); // Uncomment out if you don't want to destroy it even after crossing a scene.
         }
         else
         {
