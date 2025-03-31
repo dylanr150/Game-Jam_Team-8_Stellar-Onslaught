@@ -26,11 +26,20 @@ public class GameManager : SingletonMonoBehavior<GameManager>
 
     public void CompleteLevel()
     {
-        // Load SkillShop after each level
-        SceneManager.LoadScene("SkillShop");
-        
-        // Print level completed to console
-        Debug.Log("Level " + CurrentLevelIndex + " completed! Loading shop...");
+
+        if (CurrentLevelIndex < levels.Length)
+        {
+            // Load SkillShop after each level
+            SceneManager.LoadScene("SkillShop");
+
+            // Print level completed to console
+            Debug.Log("Level " + CurrentLevelIndex + " completed! Loading shop...");
+        }
+        else
+        {
+            Debug.Log("All levels completed! Returning to main menu.");
+            SceneManager.LoadScene("MainMenu");
+        }
     }
 
     public void OnExitShop()

@@ -37,7 +37,7 @@ public class UpgradePanel : MonoBehaviour
             return;
         }
 
-        if (ScoreManager.Instance.GetCurrentScore() == 700)
+        if (ScoreManager.Instance.GetCurrentScore() <= 700)
         {
             PlayerSkillManager.Instance.UpgradeSkill(skillName);
             ScoreManager.Instance.SetScore(ScoreManager.Instance.GetCurrentScore() - 700); 
