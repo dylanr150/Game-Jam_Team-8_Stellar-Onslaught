@@ -1,27 +1,13 @@
 using TMPro;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class GameManager : SingletonMonoBehavior<GameManager> // No need to declare Instance here.
 {
-    [SerializeField] private InputManager inputManager;
+    [SerializeField] private Player Player;
 
-    public static GameManager Instance;
     public TextMeshProUGUI scoreText;
-    private int currentScore = 0;
+    public int currentScore = 0;
 
-    private void Awake()
-    {
-        // Singleton initialization.
-        if (Instance == null)
-        {
-            Instance = this;
-            // DontDestroyOnLoad(gameObject); // Uncomment out if you don't want to destroy it even after crossing a scene.
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
 
     private void Start()
     {
@@ -40,5 +26,20 @@ public class GameManager : MonoBehaviour
         {
             scoreText.text = "Score: " + currentScore;
         }
+    }
+
+    public void KillPlayer()
+    {
+        Player.Die();
+    }
+
+    public void PlayerShooting()
+    {
+        Player.playerShoot();
+    }
+
+    public void PlayerStopShooting()
+    {
+        Player.onStopShooting();
     }
 }

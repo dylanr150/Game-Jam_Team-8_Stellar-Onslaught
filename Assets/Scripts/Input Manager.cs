@@ -3,7 +3,7 @@ using System;
 using UnityEngine.Events;
 using Unity.VisualScripting;
 
-public class InputManager : MonoBehaviour
+public class InputManager : SingletonMonoBehavior<InputManager>
 {
     public UnityEvent<Vector2> OnMove = new UnityEvent<Vector2>();
     public UnityEvent OnShoot = new UnityEvent();
