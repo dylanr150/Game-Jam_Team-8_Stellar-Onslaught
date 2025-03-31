@@ -36,6 +36,7 @@ Transform:
   m_Children:
   - {fileID: 7841242391985169133}
   - {fileID: 206797323420258618}
+  - {fileID: 3782189539885850702}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &901803047073920098
@@ -198,12 +199,45 @@ MonoBehaviour:
   waypoints: []
   formationPosition: {x: 0, y: 0}
   bulletPrefab: {fileID: 3946968193610357113, guid: fd321dfadbe213e449e89ff9f40c3756, type: 3}
-  firePoint: {fileID: 206797323420258618}
+  firePoint: {fileID: 3782189539885850702}
   player: {fileID: 3493080223263225314, guid: aae96e5aae07db14bb1ffa66271f13fd, type: 3}
   moveSpeed: 3
   fireRate: 2
   diveSpeed: 7
   diveTriggerDistance: 5
+  bulletSpeed: 5
+  startDelay: 5
+--- !u!1 &7887724548641086653
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3782189539885850702}
+  m_Layer: 0
+  m_Name: GunSpot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3782189539885850702
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7887724548641086653}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.247, z: 0}
+  m_LocalScale: {x: 0.6666667, y: 0.6666667, z: 0.6666667}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7465577044910268078}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8764020196081337407
 GameObject:
   m_ObjectHideFlags: 0

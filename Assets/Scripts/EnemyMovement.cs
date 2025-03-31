@@ -13,6 +13,7 @@ public class EnemyAI : MonoBehaviour
     public float fireRate = 2f;
     public float diveSpeed = 4f; // Slowed down dive speed
     public float diveTriggerDistance = 5f;
+    public float bulletSpeed = 5f;
 
     // Timer field to delay enemy actions
     public float startDelay = 5f; // Delay before the enemy starts moving
@@ -105,7 +106,21 @@ public class EnemyAI : MonoBehaviour
         if (fireTimer >= fireRate)
         {
             Debug.Log($"{gameObject.name} shooting bullet from {firePoint.position}");
-            Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
+
+            // Instantiate the bullet at the firePoint's position
+            GameObject bullet = Instantiate(bulletPrefab, firePoint.position, Quaternion.Euler(0,0,180));
+
+            // Get the bullet's Rigidbody2D (if it has one) and set the velocity to make it move downwards
+            Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
+            if (rb != null)
+            {
+                rb.linearVelocity = new Vector2(0, -1) * bulletSpeed;  // Set velocity to move downwards
+            }
+            else
+            {
+                Debug.LogWarning($"{gameObject.name} bullet does not have a Rigidbody2D, cannot apply velocity.");
+            }
+
             fireTimer = 0;
         }
     }
