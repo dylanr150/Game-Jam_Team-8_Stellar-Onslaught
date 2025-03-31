@@ -13,7 +13,6 @@ public class Player : MonoBehaviour
     private Rigidbody2D rb;
 
     public Animator animator;
-    bool shoot = false;
 
     void Start()
     {
@@ -44,7 +43,6 @@ public class Player : MonoBehaviour
         Instantiate(bulletPrefab, gunSpot.transform.position, Quaternion.identity);
         Instantiate(bulletPrefab, gunSpot2.transform.position, Quaternion.identity);
 
-        shoot = true;
         animator.SetBool("isShoot", true);
     }
 
