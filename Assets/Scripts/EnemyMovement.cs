@@ -14,6 +14,10 @@ public class EnemyAI : MonoBehaviour
     public float diveSpeed = 4f; // Slowed down dive speed
     public float diveTriggerDistance = 5f;
 
+    // Timer field to delay enemy actions
+    public float startDelay = 5f; // Delay before the enemy starts moving
+    private float timer;
+
     private int currentWaypoint = 0;
     private float fireTimer = 0;
     private bool inFormation = false;
@@ -21,11 +25,30 @@ public class EnemyAI : MonoBehaviour
 
     void Start()
     {
-        Debug.Log($"{gameObject.name} spawned at {transform.position}");
+        // Initialize the timer
+        timer = startDelay;
+        Debug.Log($"{gameObject.name} spawned at {transform.position}. Waiting for {startDelay} seconds.");
     }
 
     void Update()
     {
+        // Countdown the timer
+        if (timer > 0)
+        {
+            timer -= Time.deltaTime; // Reduce the timer by the time passed
+            Debug.Log($"{gameObject.name} waiting: {timer:F2} seconds left before starting");
+            if(timer > 0)
+            {
+                GetComponent<Collider2D>().enabled = false;
+            }
+            else
+            {
+                GetComponent<Collider2D>().enabled = true;
+            }
+            return; // Skip other behaviors until timer reaches 0
+        }
+
+        // Once the timer reaches 0, start the enemy behaviors
         if (isDiving)
         {
             Debug.Log($"{gameObject.name} is diving, skipping other behaviors.");
@@ -73,6 +96,11 @@ public class EnemyAI : MonoBehaviour
     // Shooting at regular intervals
     void ShootAtIntervals()
     {
+        if (firePoint == null) // Check if firePoint is destroyed or not assigned
+        {
+            return; // Exit the method if firePoint is missing
+        }
+
         fireTimer += Time.deltaTime;
         if (fireTimer >= fireRate)
         {
@@ -85,6 +113,11 @@ public class EnemyAI : MonoBehaviour
     // Check if the enemy should dive at the player
     void CheckForDive()
     {
+        if (player == null) // Check if player is destroyed or not assigned
+        {
+            return; // Exit the method if player is missing
+        }
+
         float distanceToPlayer = Vector2.Distance(transform.position, player.position);
 
         // 0.2% chance per frame for diving
@@ -109,7 +142,7 @@ public class EnemyAI : MonoBehaviour
     // Enemy dive attack
     IEnumerator DiveAtPlayer()
     {
-        while (Vector2.Distance(transform.position, player.position) > 0.2f)
+        while (player != null && Vector2.Distance(transform.position, player.position) > 0.2f) // Check if player is still valid
         {
             transform.position = Vector2.MoveTowards(transform.position, player.position, diveSpeed * Time.deltaTime);
             yield return null;
@@ -129,10 +162,5 @@ public class EnemyAI : MonoBehaviour
 
         Debug.LogWarning($"{gameObject.name} exited the screen, now destroying.");
         Destroy(gameObject);
-    }
-
-    void OnDestroy()
-    {
-        Debug.LogError($"{gameObject.name} was destroyed at {transform.position}");
     }
 }
