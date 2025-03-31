@@ -39,6 +39,7 @@ public class GameManager : SingletonMonoBehavior<GameManager>
         {
             Debug.Log("All levels completed! Returning to main menu.");
             SceneManager.LoadScene("MainMenu");
+            ResetGame();
         }
     }
 
@@ -54,5 +55,17 @@ public class GameManager : SingletonMonoBehavior<GameManager>
             Debug.Log("All levels completed!");
             // Load credits or main menu
         }
+    }
+
+    public void ResetGame()
+    {
+        Debug.Log("Resetting game state...");
+        CurrentLevelIndex = 1;
+        ScoreManager.Instance.SetScore(0);
+
+        // Reset skill data here
+        PlayerSkillManager.Instance.ResetAllSkills();
+
+        // If needed, reset other systems here too
     }
 }
