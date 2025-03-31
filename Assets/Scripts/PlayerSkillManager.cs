@@ -50,4 +50,16 @@ public class PlayerSkillManager : MonoBehaviour
 
         skillLevels[skillName]++;
     }
+
+    // Resets all skills to their default state.
+    public void ResetAllSkills()
+    {
+        skillLevels.Clear();
+    }
+
+    // Optionally allows setting a specific skill level manually.
+    public void SetSkillLevel(string skillName, int level)
+    {
+        skillLevels[skillName] = Mathf.Max(1, level); // Optional: clamp to 1+
+    }
 }

@@ -13,7 +13,7 @@ public class ScoreManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            // DontDestroyOnLoad(gameObject); // Uncomment out if you don't want to destroy it even after crossing a scene.
+            DontDestroyOnLoad(gameObject); // Uncomment out if you don't want to destroy it even after crossing a scene.
         }
         else
         {
@@ -38,5 +38,20 @@ public class ScoreManager : MonoBehaviour
         {
             scoreText.text = "Score: " + currentScore;
         }
+    }
+
+    public int GetCurrentScore()
+    {
+        return currentScore;
+    }
+    public void ResetScore()
+    {
+        currentScore = 0;
+        UpdateScoreUI();
+    }
+    public void SetScore(int score)
+    {
+        currentScore = score;
+        UpdateScoreUI();
     }
 }

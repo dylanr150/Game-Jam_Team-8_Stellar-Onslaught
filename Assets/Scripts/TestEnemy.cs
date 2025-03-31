@@ -18,7 +18,7 @@ public class TestEnemy : MonoBehaviour
         Debug.Log("[TestEnemy] DestroyEnemy called. scoreValue = " + scoreValue);
         
         // Score addition (assuming ScoreManager is on the scene).
-        GameManager.Instance.AddScore(scoreValue);
+        //ScoreManager.Instance.AddScore(scoreValue);
 
         // Destroy the enemy (this object).
         Destroy(gameObject);

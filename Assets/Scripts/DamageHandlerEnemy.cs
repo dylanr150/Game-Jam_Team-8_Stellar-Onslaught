@@ -38,7 +38,7 @@ public class DamageHandlerEnemy : MonoBehaviour
         GetComponent<Collider2D>().enabled = false;
 
         Destroy(gameObject, deathTime);
-        GameManager.Instance.AddScore(scoreValue);
+        ScoreManager.Instance.AddScore(scoreValue);
         FindFirstObjectByType<LevelController>().EnemyDestroyed();
     }
 

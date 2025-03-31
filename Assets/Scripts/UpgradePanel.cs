@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
 
 public class UpgradePanel : MonoBehaviour
@@ -36,8 +37,12 @@ public class UpgradePanel : MonoBehaviour
             return;
         }
 
-        PlayerSkillManager.Instance.UpgradeSkill(skillName);
-        UpdateLevelText();
+        if (ScoreManager.Instance.GetCurrentScore() <= 700)
+        {
+            PlayerSkillManager.Instance.UpgradeSkill(skillName);
+            ScoreManager.Instance.SetScore(ScoreManager.Instance.GetCurrentScore() - 700); 
+            UpdateLevelText();
+        }
     }
 
     private void UpdateLevelText()

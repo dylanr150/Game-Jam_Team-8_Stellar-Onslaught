@@ -21,7 +21,7 @@ public class ScoreUI : MonoBehaviour
         // Update the UI Text to display the current score
         if (scoreText != null)
         {
-            scoreText.text = "Score: " + GameManager.Instance.currentScore;
+            scoreText.text = "Score: " + ScoreManager.Instance.GetCurrentScore();
         }
     }
 }
