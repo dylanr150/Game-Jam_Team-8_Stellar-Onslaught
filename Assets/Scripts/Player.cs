@@ -13,8 +13,7 @@ public class Player : MonoBehaviour
     public GameObject heartPrefab;
     private List<GameObject> hearts = new List<GameObject>();
 
-
-    public float pauseDuration = 2f;
+    [SerializeField] private float fireRate = 1.5f;
 
     public GameObject bulletPrefab;
     private GameObject gunSpot;
@@ -31,6 +30,9 @@ public class Player : MonoBehaviour
 
     private Color originalColor;
     private Color engineColor;
+
+    private float timeSinceLastFire = 0.0f;
+    public bool IsFiring { get => timeSinceLastFire < 2.0f; } // Guess a time for the bullet to have passed.
 
     void Start()
     {
@@ -67,6 +69,8 @@ public class Player : MonoBehaviour
         {
             Die();
         }
+
+        timeSinceLastFire += Time.deltaTime;
     }
 
     public void Die()
@@ -97,13 +101,17 @@ public class Player : MonoBehaviour
 
     public void playerShoot()
     {
-        gunSpot = GameObject.Find("GunSpotL");
-        gunSpot2 = GameObject.Find("GunSpotR");
-        Instantiate(bulletPrefab, gunSpot.transform.position, Quaternion.identity);
-        Instantiate(bulletPrefab, gunSpot2.transform.position, Quaternion.identity);
+        if (timeSinceLastFire > fireRate) 
+        {
+            timeSinceLastFire = 0.0f;
+            gunSpot = GameObject.Find("GunSpotL");
+            gunSpot2 = GameObject.Find("GunSpotR");
+            Instantiate(bulletPrefab, gunSpot.transform.position, Quaternion.identity);
+            Instantiate(bulletPrefab, gunSpot2.transform.position, Quaternion.identity);
 
-        animator.SetBool("isShoot", true);
-        GameSoundController.Instance.PlayShipShoot();
+            animator.SetBool("isShoot", true);
+            GameSoundController.Instance.PlayShipShoot();
+        }
     }
 
     public void onStopShooting()

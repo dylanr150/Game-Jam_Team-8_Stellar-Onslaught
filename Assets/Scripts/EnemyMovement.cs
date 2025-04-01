@@ -71,13 +71,22 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
+    bool IsPositionInLineOfFire(Vector2 position) 
+    {
+        var playerObject = GameObject.FindWithTag("Player");
+        return playerObject.GetComponent<Player>().IsFiring && (Mathf.Abs(player.position.x - position.x) <= 2.5f);
+    }
+
     // Move through waypoints and into formation
     void MoveToFormation()
     {
         if (waypoints.Length > 0 && currentWaypoint < waypoints.Length)
         {
             Debug.Log($"{gameObject.name} moving to waypoint {currentWaypoint}: {waypoints[currentWaypoint].position}");
-            transform.position = Vector2.MoveTowards(transform.position, waypoints[currentWaypoint].position, moveSpeed * Time.deltaTime);
+            Vector2 newPosition = Vector2.MoveTowards(transform.position, waypoints[currentWaypoint].position, moveSpeed * Time.deltaTime);
+            var movingIntoFire = !IsPositionInLineOfFire(transform.position) && IsPositionInLineOfFire(newPosition);
+            if (!movingIntoFire)
+                transform.position = newPosition;
 
             if (Vector2.Distance(transform.position, waypoints[currentWaypoint].position) < 0.1f)
             {
@@ -88,7 +97,10 @@ public class EnemyAI : MonoBehaviour
         else
         {
             Debug.Log($"{gameObject.name} moving to formation position {formationPosition}");
-            transform.position = Vector2.MoveTowards(transform.position, formationPosition, moveSpeed * Time.deltaTime);
+            Vector2 newPosition =  Vector2.MoveTowards(transform.position, formationPosition, moveSpeed * Time.deltaTime);
+            var movingIntoFire = !IsPositionInLineOfFire(transform.position) && IsPositionInLineOfFire(newPosition);
+            if (!movingIntoFire)
+                transform.position = newPosition;
 
             if (Vector2.Distance(transform.position, formationPosition) < 0.1f)
             {
