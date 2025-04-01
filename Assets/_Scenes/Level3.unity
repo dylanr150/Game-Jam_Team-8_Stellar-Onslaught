@@ -191,7 +191,7 @@ PrefabInstance:
     - target: {fileID: 1812631771803970179, guid: d95bb2c87dd07436ea9cbd2b3dddbf00, type: 3}
       propertyPath: enemyManager
       value: 
-      objectReference: {fileID: 666067160}
+      objectReference: {fileID: 666067162}
     - target: {fileID: 5925690727097035659, guid: d95bb2c87dd07436ea9cbd2b3dddbf00, type: 3}
       propertyPath: m_LocalPosition.x
       value: 179.62761
@@ -770,7 +770,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 666067161}
-  - component: {fileID: 666067160}
   - component: {fileID: 666067162}
   m_Layer: 0
   m_Name: EnemyManager
@@ -779,22 +778,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &666067160
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 666067159}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c88db2257785e4e3a822aa9ef6f4f7e6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyCount: 5
-  prefab: {fileID: 0}
-  startingPos: {x: -8, y: 6, z: 0}
-  stride: 2.5
 --- !u!4 &666067161
 Transform:
   m_ObjectHideFlags: 0
