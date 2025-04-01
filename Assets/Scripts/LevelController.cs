@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class LevelController : MonoBehaviour
 {
+    [SerializeField] EnemyManger enemyManager;
     public static LevelController Instance;
     public string enemyTag = "Enemy";
     private int totalEnemies;
@@ -10,7 +11,7 @@ public class LevelController : MonoBehaviour
 
     void Start()
     {
-        totalEnemies = GameObject.FindGameObjectsWithTag(enemyTag).Length;
+        totalEnemies = enemyManager.GetEnemyCount();
         remainingEnemies = totalEnemies;
     }
 

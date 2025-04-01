@@ -201,7 +201,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 3946968193610357113, guid: fd321dfadbe213e449e89ff9f40c3756, type: 3}
   firePoint: {fileID: 3782189539885850702}
   player: {fileID: 3493080223263225314, guid: aae96e5aae07db14bb1ffa66271f13fd, type: 3}
-  moveSpeed: 3
+  moveSpeed: 5
   fireRate: 2
   diveSpeed: 7
   diveTriggerDistance: 5
