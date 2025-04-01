@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class LevelController : MonoBehaviour
 {
+    public static LevelController Instance;
     public string enemyTag = "Enemy";
     private int totalEnemies;
     private int remainingEnemies;
@@ -31,7 +32,7 @@ public class LevelController : MonoBehaviour
 
     private void CompleteLevel()
     {
-        levelCompleted = true; // ✅ Prevent repeated triggering
+        levelCompleted = true; //Prevent repeated triggering
         GameManager.Instance.CompleteLevel();
     }
 }

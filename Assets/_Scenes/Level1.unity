@@ -344,6 +344,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Player: {fileID: 8918342830153381929, guid: aae96e5aae07db14bb1ffa66271f13fd, type: 3}
   CurrentLevelIndex: 1
+  PlayerHealth: 3
+  delayBeforeSceneChange: 2
 --- !u!4 &323995181
 Transform:
   m_ObjectHideFlags: 0
