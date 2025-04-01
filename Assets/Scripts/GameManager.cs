@@ -14,7 +14,7 @@ public class GameManager : SingletonMonoBehavior<GameManager>
     private bool showTutorial = false;
     private bool hasWon = false;
 
-    public void DisableTutorial() 
+    
     public int PlayerHealth = 3;
     private bool playerDied = false;
 
@@ -24,7 +24,6 @@ public class GameManager : SingletonMonoBehavior<GameManager>
     {
         playerDied = true;
         PlayerHealth = health;
-        LoadSceneWithDelay("MainMenu");
     }
 
     public int GetPlayerHealth()
@@ -32,7 +31,7 @@ public class GameManager : SingletonMonoBehavior<GameManager>
         return PlayerHealth;
     }
 
-    public void KillPlayer()
+    public void DisableTutorial()
     {
         showTutorial = false;
     }
@@ -46,7 +45,7 @@ public class GameManager : SingletonMonoBehavior<GameManager>
     {
         this.hasWon = hasWon;
         DisableTutorial();
-        SceneManager.LoadScene("GameEnd");
+        LoadSceneWithDelay("GameEnd");
     }
 
     public void LoseGame() => EndGame(false);
