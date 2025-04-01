@@ -107,23 +107,6 @@ public class Player : MonoBehaviour
         animator.SetBool("isShoot", false);
     }
 
-    IEnumerator PauseGame()
-    {
-        // Pause the game by setting time scale to 0
-        Time.timeScale = 0;
-
-        //show a message or play an animation here while the game is paused
-
-        //Wait for the specified duration
-        yield return new WaitForSecondsRealtime(pauseDuration); // Use WaitForSecondsRealtime to ignore timeScale
-
-        // Resume the game by setting time scale back to 1
-        Time.timeScale = 1;
-        Debug.Log("Game resumed!");
-
-        // Optionally, restart or load a scene, or perform any other necessary actions here
-    }
-
     private void SpawnHearts()
     {
         foreach(GameObject heart in hearts)
@@ -153,7 +136,7 @@ public class Player : MonoBehaviour
     private IEnumerator FlashRed(SpriteRenderer sp, Color originalC)
     {
         sp.color = new Color(1f, 0.3f, 0.3f, 0.5f); // Red with transparency
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.1f);
         sp.color = originalC;
     }
 
