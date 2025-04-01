@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 0bb4baa9462c9ab49bd67fa993064b2c
+guid: 6a6754105e1bdc34bb38db4ebc2466b2
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5448727121883926364
-    second: Main Ship - Base - Full health_0
+      213: -6487079474263220780
+    second: Pixel Heart Animation 16x16_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Main Ship - Base - Full health_0
+      name: Pixel Heart Animation 16x16_0
       rect:
         serializedVersion: 2
-        x: 8
-        y: 10
-        width: 32
-        height: 28
+        x: 0
+        y: 0
+        width: 16
+        height: 15
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4a0721e1d8b3264b0800000000000000
-      internalID: -5448727121883926364
+      spriteID: 4dd10d2969349f5a0800000000000000
+      internalID: -6487079474263220780
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Main Ship - Base - Full health_0: -5448727121883926364
+      Pixel Heart Animation 16x16_0: -6487079474263220780
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

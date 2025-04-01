@@ -23,6 +23,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Scenes/SkillShop.unity
     guid: 7c147d660cb4f452ebcf41633a31d03f
+  - enabled: 1
+    path: Assets/_Scenes/GameEnd.unity
+    guid: 2397b00086ca341b68cfca388d9f70a2
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

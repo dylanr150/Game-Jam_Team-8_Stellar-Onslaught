@@ -2,7 +2,9 @@ using UnityEngine;
 
 public class LevelController : MonoBehaviour
 {
+
     [SerializeField] EnemyManger enemyManager;
+    public static LevelController Instance;
     public string enemyTag = "Enemy";
     private int totalEnemies;
     private int remainingEnemies;
