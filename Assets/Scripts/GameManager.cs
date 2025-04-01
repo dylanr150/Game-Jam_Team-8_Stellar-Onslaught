@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -10,6 +11,8 @@ public class GameManager : SingletonMonoBehavior<GameManager>
     private string[] levels = { "Level1", "Level2", "Level3" };
 
     public int PlayerHealth = 3;
+
+    public float delayBeforeSceneChange = 2f;
 
     public void SetPlayerHealth(int health)
     {
@@ -36,13 +39,24 @@ public class GameManager : SingletonMonoBehavior<GameManager>
         Player.onStopShooting();
     }
 
+    public void LoadSceneWithDelay()
+    {
+        StartCoroutine(LoadSceneAfterDelay());
+    }
+
+    private IEnumerator LoadSceneAfterDelay()
+    {
+        yield return new WaitForSeconds(delayBeforeSceneChange);
+
+        SceneManager.LoadScene("SkillShop");
+    }
     public void CompleteLevel()
     {
 
         if (CurrentLevelIndex < levels.Length)
         {
             // Load SkillShop after each level
-            SceneManager.LoadScene("SkillShop");
+            LoadSceneWithDelay();
 
             // Print level completed to console
             Debug.Log("Level " + CurrentLevelIndex + " completed! Loading shop...");
