@@ -22,8 +22,14 @@ public class GameManager : SingletonMonoBehavior<GameManager>
 
     public void SetPlayerHealth(int health)
     {
-        playerDied = true;
+        
         PlayerHealth = health;
+
+        if(PlayerHealth <= 0)
+        {
+            playerDied = true;
+            LoseGame();
+        }
     }
 
     public int GetPlayerHealth()
