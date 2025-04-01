@@ -36,9 +36,9 @@ public class DamageHandlerEnemy : MonoBehaviour
         }
         // Disable the collider so the enemy can't be hit again
         GetComponent<Collider2D>().enabled = false;
-
         Destroy(gameObject, deathTime);
         ScoreManager.Instance.AddScore(scoreValue);
+        GameSoundController.Instance.PlayShipDie();
         FindFirstObjectByType<LevelController>().EnemyDestroyed();
     }
 

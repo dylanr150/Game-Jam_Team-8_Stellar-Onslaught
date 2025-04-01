@@ -100,6 +100,7 @@ public class Player : MonoBehaviour
         Instantiate(bulletPrefab, gunSpot2.transform.position, Quaternion.identity);
 
         animator.SetBool("isShoot", true);
+        GameSoundController.Instance.PlayShipShoot();
     }
 
     public void onStopShooting()
