@@ -1,12 +1,19 @@
 using UnityEngine;
 using System;
 using System.Collections;
+using NUnit.Framework;
+using System.Collections.Generic;
 
 public class Player : MonoBehaviour
 {
  //   [SerializeField] private InputManager inputManager;
     [SerializeField] private float speed;
-    [SerializeField] private int health = 1;
+    private int health;
+
+    public GameObject heartPrefab;
+    private List<GameObject> hearts = new List<GameObject>();
+
+
     public float pauseDuration = 2f;
 
     public GameObject bulletPrefab;
@@ -19,18 +26,40 @@ public class Player : MonoBehaviour
 
     public Animator animator;
 
+    private SpriteRenderer spriteRenderer;
+    private SpriteRenderer spriteRendererEngine;
+
+    private Color originalColor;
+    private Color engineColor;
+
     void Start()
     {
         InputManager.Instance.OnMove.AddListener(MovePlayer);
         InputManager.Instance.OnShoot.AddListener(playerShoot);
         InputManager.Instance.StopShoot.AddListener(onStopShooting);
         rb = GetComponent<Rigidbody2D>();
+        health = GameManager.Instance.GetPlayerHealth();
+
+        spriteRenderer = transform.Find("Main Ship - Engines - Base Engine - Powering").GetComponent<SpriteRenderer>();
+        spriteRendererEngine = transform.Find("Main Ship - Weapons - Auto Cannon").GetComponent<SpriteRenderer>(); 
+        
+        originalColor = spriteRenderer.color;
+        engineColor = spriteRendererEngine.color;
+
+        SpawnHearts();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Debug.Log("Trigger");
         health--;
+        if (health > 0) // Only flash if still alive
+        {
+            StartCoroutine(FlashRed(spriteRenderer, originalColor));
+            StartCoroutine(FlashRed(spriteRendererEngine, engineColor));
+        }
+        GameManager.Instance.SetPlayerHealth(health);
+        UpdateHearts();
     }
     void Update()
     {
@@ -81,21 +110,37 @@ public class Player : MonoBehaviour
         animator.SetBool("isShoot", false);
     }
 
-    IEnumerator PauseGame()
+    private void SpawnHearts()
     {
-        // Pause the game by setting time scale to 0
-        Time.timeScale = 0;
+        foreach(GameObject heart in hearts)
+        {
+            Destroy(heart);
+        }
+        hearts.Clear();
 
-        //show a message or play an animation here while the game is paused
+        for (int i =0; i < health; i++)
+        {
+            Vector3 heartPosition = new Vector3(-8.5f + (i * 0.4f), -4.6f, 0);
+            GameObject heart = Instantiate(heartPrefab, heartPosition, Quaternion.identity);
+            hearts.Add(heart);
+        }
+    }
 
-        //Wait for the specified duration
-        yield return new WaitForSecondsRealtime(pauseDuration); // Use WaitForSecondsRealtime to ignore timeScale
+    private void UpdateHearts()
+    {
+        // Remove the last heart when health decreases
+        if (hearts.Count > health)
+        {
+            Destroy(hearts[hearts.Count - 1]);
+            hearts.RemoveAt(hearts.Count - 1);
+        }
+    }
 
-        // Resume the game by setting time scale back to 1
-        Time.timeScale = 1;
-        Debug.Log("Game resumed!");
-
-        // Optionally, restart or load a scene, or perform any other necessary actions here
+    private IEnumerator FlashRed(SpriteRenderer sp, Color originalC)
+    {
+        sp.color = new Color(1f, 0.3f, 0.3f, 0.5f); // Red with transparency
+        yield return new WaitForSeconds(0.1f);
+        sp.color = originalC;
     }
 
 }
