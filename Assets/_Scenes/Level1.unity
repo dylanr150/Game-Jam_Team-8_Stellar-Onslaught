@@ -289,6 +289,7 @@ GameObject:
   - component: {fileID: 323995181}
   - component: {fileID: 323995179}
   - component: {fileID: 323995180}
+  - component: {fileID: 323995182}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -344,6 +345,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Player: {fileID: 8918342830153381929, guid: aae96e5aae07db14bb1ffa66271f13fd, type: 3}
   CurrentLevelIndex: 1
+  PlayerHealth: 3
+  delayBeforeSceneChange: 2
 --- !u!4 &323995181
 Transform:
   m_ObjectHideFlags: 0
@@ -359,6 +362,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &323995182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 323995178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9bc00b1eda39eb4f9728a5357dc8216, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyTag: Enemy
 --- !u!1001 &326228592
 PrefabInstance:
   m_ObjectHideFlags: 0

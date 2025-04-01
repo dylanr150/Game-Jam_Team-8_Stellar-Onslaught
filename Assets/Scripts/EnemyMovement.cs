@@ -29,9 +29,12 @@ public class EnemyAI : MonoBehaviour
     public Animator animator;
     public Animator engineAnimator;
 
+    private LevelController levelController;
+
     void Start()
     {
         // Initialize the timer
+        levelController = FindFirstObjectByType<LevelController>();
         timer = startDelay;
         Debug.Log($"{gameObject.name} spawned at {transform.position}. Waiting for {startDelay} seconds.");
     }
@@ -191,6 +194,12 @@ public class EnemyAI : MonoBehaviour
         // Disable the collider so the enemy can't be hit again
         GetComponent<Collider2D>().enabled = false;
 
+        if (levelController != null)
+        {
+            levelController.EnemyDestroyed();
+        }
+
         Destroy(gameObject, deathTime);
+
     }
 }
