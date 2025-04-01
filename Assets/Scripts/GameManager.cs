@@ -9,6 +9,7 @@ public class GameManager : SingletonMonoBehavior<GameManager>
     public int CurrentLevelIndex = 1; // Start at Level1
     private string[] levels = { "Level1", "Level2", "Level3" };
     private bool showTutorial = false;
+    private bool hasWon = false;
 
     public void DisableTutorial() 
     {
@@ -20,12 +21,16 @@ public class GameManager : SingletonMonoBehavior<GameManager>
         return showTutorial;
     }
 
-    public void LoseGame() 
+    public void EndGame(bool hasWon) 
     {
-        // Ensure that tutorial is not shown on every single playthrough.
+        this.hasWon = hasWon;
         DisableTutorial();
-        SceneManager.LoadScene("DeathScreen");
+        SceneManager.LoadScene("GameEnd");
     }
+
+    public void LoseGame() => EndGame(false);
+    public void WinGame() => EndGame(true);
+    public bool GetGameOutcome() => hasWon;
 
     public void PlayerShooting()
     {
@@ -49,9 +54,7 @@ public class GameManager : SingletonMonoBehavior<GameManager>
         }
         else
         {
-            Debug.Log("All levels completed! Returning to main menu.");
-            SceneManager.LoadScene("MainMenu");
-            ResetGame();
+            WinGame();
         }
     }
 

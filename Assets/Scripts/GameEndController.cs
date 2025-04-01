@@ -8,7 +8,7 @@ using UnityEngine.EventSystems;
 using UnityEditor;
 #endif
 
-public class DeathScreenController : MonoBehaviour
+public class GameEndController : MonoBehaviour
 {
     [Header("SFX")]
     public AudioSource buttonHoverSound;
@@ -30,6 +30,7 @@ public class DeathScreenController : MonoBehaviour
     public Button mainMenuButton;
 
     [Header("UI")]
+    public TMP_Text titleText;
     public TMP_Text scoreText;
 
     void OnValidate()
@@ -77,6 +78,9 @@ public class DeathScreenController : MonoBehaviour
     
     void Start()
     {
+        bool hasWon = GameManager.Instance.GetGameOutcome();
+        if (titleText is not null)
+            titleText.text = hasWon ? "You have Won!" : "You have died ..";
         if (scoreText is not null) 
             scoreText.text = $"Score: {ScoreManager.Instance.GetCurrentScore()}";
 
@@ -91,6 +95,7 @@ public class DeathScreenController : MonoBehaviour
         
         AddSceneChangeButton(mainMenuButton, () => 
         {
+            GameManager.Instance.ResetGame();
             SceneManager.LoadScene(mainMenuSceneName);
         });
     }

@@ -421,7 +421,7 @@ GameObject:
   - component: {fileID: 647061568}
   - component: {fileID: 647061567}
   m_Layer: 5
-  m_Name: QuitButton
+  m_Name: MainMenuButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -541,7 +541,7 @@ GameObject:
   - component: {fileID: 743050580}
   - component: {fileID: 743050579}
   m_Layer: 5
-  m_Name: DeathText
+  m_Name: TitleText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1005,7 +1005,7 @@ GameObject:
   - component: {fileID: 1679256657}
   - component: {fileID: 1679256656}
   m_Layer: 0
-  m_Name: DeathScreenController
+  m_Name: GameEndController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1032,6 +1032,7 @@ MonoBehaviour:
   startSceneName: Level1
   playAgainButton: {fileID: 1455411980}
   mainMenuButton: {fileID: 647061567}
+  titleText: {fileID: 743050579}
   scoreText: {fileID: 2107106742}
 --- !u!4 &1679256657
 Transform:
@@ -1370,7 +1371,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Quit
+  m_text: Main Menu
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
