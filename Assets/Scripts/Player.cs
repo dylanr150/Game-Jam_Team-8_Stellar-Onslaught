@@ -45,8 +45,11 @@ public class Player : MonoBehaviour
         dead = true;
         // Disable the collider so the enemy can't be hit again
         GetComponent<Collider2D>().enabled = false;
-        StartCoroutine(PauseGame());
+
+        // StartCoroutine(PauseGame());
         Destroy(gameObject);
+
+        GameManager.Instance.LoseGame();
     }
 
     public void MovePlayer(Vector2 direction)

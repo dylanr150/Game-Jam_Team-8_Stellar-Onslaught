@@ -1,4 +1,3 @@
-using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -9,9 +8,9 @@ public class GameManager : SingletonMonoBehavior<GameManager>
     public int CurrentLevelIndex = 1; // Start at Level1
     private string[] levels = { "Level1", "Level2", "Level3" };
 
-    public void KillPlayer()
+    public void LoseGame() 
     {
-        Player.Die();
+        SceneManager.LoadScene("DeathScreen");
     }
 
     public void PlayerShooting()
