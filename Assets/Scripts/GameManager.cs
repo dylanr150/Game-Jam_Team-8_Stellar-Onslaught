@@ -7,10 +7,14 @@ using UnityEngine.SceneManagement;
 public class GameManager : SingletonMonoBehavior<GameManager>
 {
     [SerializeField] private Player Player;
+    [SerializeField] private GameObject hintsCanvas;
 
     public int CurrentLevelIndex = 1; // Start at Level1
     private string[] levels = { "Level1", "Level2", "Level3" };
+    private bool showTutorial = false;
+    private bool hasWon = false;
 
+    
     public int PlayerHealth = 3;
     private bool playerDied = false;
 
@@ -20,7 +24,6 @@ public class GameManager : SingletonMonoBehavior<GameManager>
     {
         playerDied = true;
         PlayerHealth = health;
-        LoadSceneWithDelay("MainMenu");
     }
 
     public int GetPlayerHealth()
@@ -28,10 +31,26 @@ public class GameManager : SingletonMonoBehavior<GameManager>
         return PlayerHealth;
     }
 
-    public void KillPlayer()
+    public void DisableTutorial()
     {
-        Player.Die();
+        showTutorial = false;
     }
+
+    public bool ShowTutorial() 
+    {
+        return showTutorial;
+    }
+
+    public void EndGame(bool hasWon) 
+    {
+        this.hasWon = hasWon;
+        DisableTutorial();
+        LoadSceneWithDelay("GameEnd");
+    }
+
+    public void LoseGame() => EndGame(false);
+    public void WinGame() => EndGame(true);
+    public bool GetGameOutcome() => hasWon;
 
     public void PlayerShooting()
     {
@@ -73,9 +92,7 @@ public class GameManager : SingletonMonoBehavior<GameManager>
         }
         else
         {
-            Debug.Log("All levels completed! Returning to main menu.");
-            SceneManager.LoadScene("MainMenu");
-            ResetGame();
+            WinGame();
         }
     }
 
