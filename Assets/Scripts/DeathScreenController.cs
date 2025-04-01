@@ -78,7 +78,7 @@ public class DeathScreenController : MonoBehaviour
     void Start()
     {
         if (scoreText is not null) 
-            scoreText.text = $"Score {ScoreManager.Instance.GetCurrentScore()}";
+            scoreText.text = $"Score: {ScoreManager.Instance.GetCurrentScore()}";
 
         if (menuMusic != null && !menuMusic.isPlaying)
             menuMusic.Play();
