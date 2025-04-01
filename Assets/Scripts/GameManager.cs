@@ -26,7 +26,6 @@ public class GameManager : SingletonMonoBehavior<GameManager>
 
     public void CompleteLevel()
     {
-
         if (CurrentLevelIndex < levels.Length)
         {
             // Load SkillShop after each level

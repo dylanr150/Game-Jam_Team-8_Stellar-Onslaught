@@ -2,15 +2,17 @@ using UnityEngine;
 
 public class LevelController : MonoBehaviour
 {
+    [SerializeField] EnemyManger enemyManager;
     public string enemyTag = "Enemy";
     private int totalEnemies;
     private int remainingEnemies;
-    private bool levelCompleted = false; // 👈 Prevents multiple calls
+    private bool levelCompleted = false;
 
     void Start()
     {
-        totalEnemies = GameObject.FindGameObjectsWithTag(enemyTag).Length;
+        totalEnemies = enemyManager.GetEnemyCount();
         remainingEnemies = totalEnemies;
+        Debug.Log($"Remaining enemies: {remainingEnemies}");
     }
 
     void Update()
@@ -31,7 +33,7 @@ public class LevelController : MonoBehaviour
 
     private void CompleteLevel()
     {
-        levelCompleted = true; // ✅ Prevent repeated triggering
+        levelCompleted = true;
         GameManager.Instance.CompleteLevel();
     }
 }
