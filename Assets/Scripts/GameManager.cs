@@ -39,24 +39,27 @@ public class GameManager : SingletonMonoBehavior<GameManager>
         Player.onStopShooting();
     }
 
-    public void LoadSceneWithDelay()
+    public void LoadSceneWithDelay(string sceneName)
     {
-        StartCoroutine(LoadSceneAfterDelay());
+        StartCoroutine(LoadSceneAfterDelay(sceneName));
     }
 
-    private IEnumerator LoadSceneAfterDelay()
+    private IEnumerator LoadSceneAfterDelay(string sceneName)
     {
         yield return new WaitForSeconds(delayBeforeSceneChange);
 
-        SceneManager.LoadScene("SkillShop");
+        SceneManager.LoadScene(sceneName);
     }
     public void CompleteLevel()
     {
-
-        if (CurrentLevelIndex < levels.Length)
+        if (PlayerHealth <= 0)
+        {
+            LoadSceneWithDelay("MainMenu");
+        }
+        else if (CurrentLevelIndex < levels.Length)
         {
             // Load SkillShop after each level
-            LoadSceneWithDelay();
+            LoadSceneWithDelay("SkillShop");
 
             // Print level completed to console
             Debug.Log("Level " + CurrentLevelIndex + " completed! Loading shop...");
