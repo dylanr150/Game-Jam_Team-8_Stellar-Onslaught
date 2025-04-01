@@ -4,12 +4,26 @@ using UnityEngine.SceneManagement;
 public class GameManager : SingletonMonoBehavior<GameManager>
 {
     [SerializeField] private Player Player;
+    [SerializeField] private GameObject hintsCanvas;
 
     public int CurrentLevelIndex = 1; // Start at Level1
     private string[] levels = { "Level1", "Level2", "Level3" };
+    private bool showTutorial = false;
+
+    public void DisableTutorial() 
+    {
+        showTutorial = false;
+    }
+
+    public bool ShowTutorial() 
+    {
+        return showTutorial;
+    }
 
     public void LoseGame() 
     {
+        // Ensure that tutorial is not shown on every single playthrough.
+        DisableTutorial();
         SceneManager.LoadScene("DeathScreen");
     }
 
@@ -25,7 +39,6 @@ public class GameManager : SingletonMonoBehavior<GameManager>
 
     public void CompleteLevel()
     {
-
         if (CurrentLevelIndex < levels.Length)
         {
             // Load SkillShop after each level
