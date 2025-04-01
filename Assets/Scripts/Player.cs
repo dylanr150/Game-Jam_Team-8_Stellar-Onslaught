@@ -26,6 +26,12 @@ public class Player : MonoBehaviour
 
     public Animator animator;
 
+    private SpriteRenderer spriteRenderer;
+    private SpriteRenderer spriteRendererEngine;
+
+    private Color originalColor;
+    private Color engineColor;
+
     void Start()
     {
         InputManager.Instance.OnMove.AddListener(MovePlayer);
@@ -33,6 +39,13 @@ public class Player : MonoBehaviour
         InputManager.Instance.StopShoot.AddListener(onStopShooting);
         rb = GetComponent<Rigidbody2D>();
         health = GameManager.Instance.GetPlayerHealth();
+
+        spriteRenderer = transform.Find("Main Ship - Engines - Base Engine - Powering").GetComponent<SpriteRenderer>();
+        spriteRendererEngine = transform.Find("Main Ship - Weapons - Auto Cannon").GetComponent<SpriteRenderer>(); 
+        
+        originalColor = spriteRenderer.color;
+        engineColor = spriteRendererEngine.color;
+
         SpawnHearts();
     }
 
@@ -40,6 +53,11 @@ public class Player : MonoBehaviour
     {
         Debug.Log("Trigger");
         health--;
+        if (health > 0) // Only flash if still alive
+        {
+            StartCoroutine(FlashRed(spriteRenderer, originalColor));
+            StartCoroutine(FlashRed(spriteRendererEngine, engineColor));
+        }
         GameManager.Instance.SetPlayerHealth(health);
         UpdateHearts();
     }
@@ -130,6 +148,13 @@ public class Player : MonoBehaviour
             Destroy(hearts[hearts.Count - 1]);
             hearts.RemoveAt(hearts.Count - 1);
         }
+    }
+
+    private IEnumerator FlashRed(SpriteRenderer sp, Color originalC)
+    {
+        sp.color = new Color(1f, 0.3f, 0.3f, 0.5f); // Red with transparency
+        yield return new WaitForSeconds(0.2f);
+        sp.color = originalC;
     }
 
 }

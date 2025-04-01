@@ -207,6 +207,9 @@ MonoBehaviour:
   diveTriggerDistance: 5
   bulletSpeed: 5
   startDelay: 5
+  deathTime: 0.5
+  animator: {fileID: 1269553754870878248}
+  engineAnimator: {fileID: 9036690920752885277}
 --- !u!1 &7887724548641086653
 GameObject:
   m_ObjectHideFlags: 0
