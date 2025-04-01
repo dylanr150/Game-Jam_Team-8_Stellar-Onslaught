@@ -8,7 +8,7 @@ public class Player : MonoBehaviour
 {
  //   [SerializeField] private InputManager inputManager;
     [SerializeField] private float speed;
-    [SerializeField] private int health = 3;
+    private int health;
 
     public GameObject heartPrefab;
     private List<GameObject> hearts = new List<GameObject>();
@@ -32,6 +32,7 @@ public class Player : MonoBehaviour
         InputManager.Instance.OnShoot.AddListener(playerShoot);
         InputManager.Instance.StopShoot.AddListener(onStopShooting);
         rb = GetComponent<Rigidbody2D>();
+        health = GameManager.Instance.GetPlayerHealth();
         SpawnHearts();
     }
 
@@ -39,6 +40,7 @@ public class Player : MonoBehaviour
     {
         Debug.Log("Trigger");
         health--;
+        GameManager.Instance.SetPlayerHealth(health);
         UpdateHearts();
     }
     void Update()

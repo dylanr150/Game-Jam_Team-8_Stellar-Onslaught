@@ -9,6 +9,18 @@ public class GameManager : SingletonMonoBehavior<GameManager>
     public int CurrentLevelIndex = 1; // Start at Level1
     private string[] levels = { "Level1", "Level2", "Level3" };
 
+    public int PlayerHealth = 3;
+
+    public void SetPlayerHealth(int health)
+    {
+        PlayerHealth = health;
+    }
+
+    public int GetPlayerHealth()
+    {
+        return PlayerHealth;
+    }
+
     public void KillPlayer()
     {
         Player.Die();
