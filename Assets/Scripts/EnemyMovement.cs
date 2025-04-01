@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System;
 
 public class EnemyAI : MonoBehaviour
 {
@@ -23,6 +24,10 @@ public class EnemyAI : MonoBehaviour
     private float fireTimer = 0;
     private bool inFormation = false;
     private bool isDiving = false;
+
+    [SerializeField] private float deathTime = 0.5f;
+    public Animator animator;
+    public Animator engineAnimator;
 
     void Start()
     {
@@ -136,7 +141,7 @@ public class EnemyAI : MonoBehaviour
         float distanceToPlayer = Vector2.Distance(transform.position, player.position);
 
         // 0.2% chance per frame for diving
-        if (distanceToPlayer < diveTriggerDistance && Random.value < 0.002f)
+        if (distanceToPlayer < diveTriggerDistance && UnityEngine.Random.value < 0.002f)
         {
             Debug.Log($"{gameObject.name} preparing to dive...");
             StartCoroutine(DelayedDive());
@@ -146,7 +151,7 @@ public class EnemyAI : MonoBehaviour
     // Add a random delay before diving
     IEnumerator DelayedDive()
     {
-        float delay = Random.Range(0.5f, 2f); // Random delay before diving
+        float delay = UnityEngine.Random.Range(0.5f, 2f); // Random delay before diving
         yield return new WaitForSeconds(delay);
 
         Debug.Log($"{gameObject.name} is diving after {delay} seconds!");
@@ -176,6 +181,16 @@ public class EnemyAI : MonoBehaviour
         }
 
         Debug.LogWarning($"{gameObject.name} exited the screen, now destroying.");
-        Destroy(gameObject);
+
+        animator.SetBool("isDead", true);
+
+        if (engineAnimator != null)
+        {
+            engineAnimator.SetBool("isDead", true);
+        }
+        // Disable the collider so the enemy can't be hit again
+        GetComponent<Collider2D>().enabled = false;
+
+        Destroy(gameObject, deathTime);
     }
 }
