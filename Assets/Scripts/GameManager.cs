@@ -1,5 +1,6 @@
 using System.Collections;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -11,12 +12,15 @@ public class GameManager : SingletonMonoBehavior<GameManager>
     private string[] levels = { "Level1", "Level2", "Level3" };
 
     public int PlayerHealth = 3;
+    private bool playerDied = false;
 
     public float delayBeforeSceneChange = 2f;
 
     public void SetPlayerHealth(int health)
     {
+        playerDied = true;
         PlayerHealth = health;
+        LoadSceneWithDelay("MainMenu");
     }
 
     public int GetPlayerHealth()
@@ -52,11 +56,14 @@ public class GameManager : SingletonMonoBehavior<GameManager>
     }
     public void CompleteLevel()
     {
-        if (PlayerHealth <= 0)
+        if (playerDied)
         {
-            LoadSceneWithDelay("MainMenu");
+            playerDied = false;
+            ResetGame();
+            return;
         }
-        else if (CurrentLevelIndex < levels.Length)
+
+        if (CurrentLevelIndex < levels.Length)
         {
             // Load SkillShop after each level
             LoadSceneWithDelay("SkillShop");
@@ -91,7 +98,8 @@ public class GameManager : SingletonMonoBehavior<GameManager>
         Debug.Log("Resetting game state...");
         CurrentLevelIndex = 1;
         ScoreManager.Instance.SetScore(0);
-
+        PlayerHealth = 3; //Sets hp back to 3
+        playerDied = false;
         // Reset skill data here
         PlayerSkillManager.Instance.ResetAllSkills();
 
