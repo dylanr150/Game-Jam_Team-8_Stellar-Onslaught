@@ -78,7 +78,6 @@ public class GameManager : SingletonMonoBehavior<GameManager>
         if (playerDied)
         {
             playerDied = false;
-            ResetGame();
             return;
         }
 
