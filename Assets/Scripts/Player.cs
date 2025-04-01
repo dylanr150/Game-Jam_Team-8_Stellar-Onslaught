@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 public class Player : MonoBehaviour
 {
- //   [SerializeField] private InputManager inputManager;
+    //   [SerializeField] private InputManager inputManager;
     [SerializeField] private float speed;
     private int health;
 
@@ -20,7 +20,7 @@ public class Player : MonoBehaviour
     private GameObject gunSpot;
     private GameObject gunSpot2;
 
-    private Boolean dead = false;
+    private bool dead = false;
 
     private Rigidbody2D rb;
 
@@ -34,6 +34,11 @@ public class Player : MonoBehaviour
 
     void Start()
     {
+        // Apply MoveSpeed upgrade
+        int moveSpeedLevel = PlayerSkillManager.Instance.GetSkillLevel("MoveSpeed");
+        float baseSpeed = 5.0f;             // adjust as desired
+        float incrementPerLevel = 1.0f;     // how much speed to add per level
+        speed = baseSpeed + (moveSpeedLevel - 1) * incrementPerLevel;
         InputManager.Instance.OnMove.AddListener(MovePlayer);
         InputManager.Instance.OnShoot.AddListener(playerShoot);
         InputManager.Instance.StopShoot.AddListener(onStopShooting);
@@ -41,8 +46,8 @@ public class Player : MonoBehaviour
         health = GameManager.Instance.GetPlayerHealth();
 
         spriteRenderer = transform.Find("Main Ship - Engines - Base Engine - Powering").GetComponent<SpriteRenderer>();
-        spriteRendererEngine = transform.Find("Main Ship - Weapons - Auto Cannon").GetComponent<SpriteRenderer>(); 
-        
+        spriteRendererEngine = transform.Find("Main Ship - Weapons - Auto Cannon").GetComponent<SpriteRenderer>();
+
         originalColor = spriteRenderer.color;
         engineColor = spriteRendererEngine.color;
 
@@ -83,7 +88,7 @@ public class Player : MonoBehaviour
 
     public void MovePlayer(Vector2 direction)
     {
-        if(direction != Vector2.zero) 
+        if (direction != Vector2.zero)
         {
             rb.linearVelocity = new Vector2(direction.x * speed, 0);
         }
@@ -92,7 +97,7 @@ public class Player : MonoBehaviour
         {
             rb.linearVelocity = Vector2.zero;
         }
-        
+
     }
 
     public void playerShoot()
@@ -113,13 +118,13 @@ public class Player : MonoBehaviour
 
     private void SpawnHearts()
     {
-        foreach(GameObject heart in hearts)
+        foreach (GameObject heart in hearts)
         {
             Destroy(heart);
         }
         hearts.Clear();
 
-        for (int i =0; i < health; i++)
+        for (int i = 0; i < health; i++)
         {
             Vector3 heartPosition = new Vector3(-8.5f + (i * 0.4f), -4.6f, 0);
             GameObject heart = Instantiate(heartPrefab, heartPosition, Quaternion.identity);

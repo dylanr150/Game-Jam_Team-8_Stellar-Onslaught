@@ -1,14 +1,16 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
 
 public class UpgradePanel : MonoBehaviour
 {
     [Header("Upgrade Info")]
-    public string skillName;              // Set this in the Inspector
-    public TextMeshProUGUI levelText;                // Drag the Text component here
-    public Button upgradeButton;          // Drag the Button component here
+    public string skillName;                  // Set this in the Inspector
+    public TextMeshProUGUI levelText;         // Drag the "Level: X" text component here
+    public Button upgradeButton;              // Drag the Upgrade button component here
+
+    [Header("Cost Info")]
+    [SerializeField] private TextMeshProUGUI costInfoText; // An extra TextMeshProUGUI for "700 points required" message
 
     private void Start()
     {
@@ -23,10 +25,44 @@ public class UpgradePanel : MonoBehaviour
             Debug.LogError("PlayerSkillManager is not in the scene! Make sure it's loaded before this runs.", this);
 
         // Set up the button listener
-        upgradeButton?.onClick.AddListener(UpgradeSkill);
+        upgradeButton.onClick.AddListener(UpgradeSkill);
 
         // Set initial text
         UpdateLevelText();
+
+        // Optional: Set the initial costInfoText
+        if (costInfoText != null)
+        {
+            costInfoText.text = "700 points required to upgrade.";
+        }
+    }
+
+    private void Update()
+    {
+        // Enable or disable the button based on current score
+        if (upgradeButton != null)
+        {
+            int currentScore = ScoreManager.Instance.GetCurrentScore();
+
+            if (currentScore < 700)
+            {
+                upgradeButton.interactable = false;
+
+                if (costInfoText != null)
+                {
+                    costInfoText.text = "Not enough points! (700 required)";
+                }
+            }
+            else
+            {
+                upgradeButton.interactable = true;
+
+                if (costInfoText != null)
+                {
+                    costInfoText.text = "Press the button to upgrade (" + currentScore + " pts available)";
+                }
+            }
+        }
     }
 
     private void UpgradeSkill()
@@ -37,11 +73,17 @@ public class UpgradePanel : MonoBehaviour
             return;
         }
 
-        if (ScoreManager.Instance.GetCurrentScore() <= 700)
+        // Check again before upgrading, in case score changed
+        int currentScore = ScoreManager.Instance.GetCurrentScore();
+        if (currentScore >= 700)
         {
             PlayerSkillManager.Instance.UpgradeSkill(skillName);
-            ScoreManager.Instance.SetScore(ScoreManager.Instance.GetCurrentScore() - 700); 
+            ScoreManager.Instance.SetScore(currentScore - 700);
             UpdateLevelText();
+        }
+        else
+        {
+            Debug.Log("Not enough score to upgrade!");
         }
     }
 
